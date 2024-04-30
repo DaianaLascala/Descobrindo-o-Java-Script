@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-card {
+            width: 250px;
+        }
+    </style>
+</head>
+<body class="bg-warning">
+
+    <div class="container">
+        <h1 class="text-center mt-5 mb-4">Catálogo de Receitas</h1>
+        <div id="pnlCatalogo" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center"></div>
+    </div>
+
+    <script>
+        var receitas = [
+            {
+                titulo: "Cupcake de Chocolate",
+                imagem: "chocolate-cupcakes.png",
+                ingredientes: [
+                    "3 colheres (sopa) de manteiga amolecida",
+                    "2 colheres (sopa) de cacau em pó",
+                    "¾ de xícara (chá) de açúcar",
+                    "¾ de xícara (chá) de farinha de trigo",
+                    "1½ colher (chá) de fermento em pó",
+                    "1 pitada de sal",
+                    "1 ovo",
+                    "½ xícara (chá) de leite"
+                ],
+                preparo: `Modo de preparo do cupcake de chocolate:<br>
+                          Preaqueça o forno a 180 ºC (temperatura média).<br>
+                          Coloque 12 forminhas de papel próprias para assar (não precisa untar) dentro da fôrma de cupcake.<br>
+                          Na batedeira, coloque a manteiga,
+                          o cacau em pó, o açúcar, a farinha, o fermento e o sal.<br>
+                          Atenção: a manteiga deve estar em ponto de pomada.<br>
+                          Retire da geladeira com antecedência e deixe sobre o forno
+                          para começar a amolecer.<br>
+                          Na velocidade baixa, bata até que fique com textura de areia úmida.<br>
+                          Numa tigela, bata o ovo com o batedor de arame e em seguida misture o leite.<br> 
+                          Acrescente metade dessa mistura à batedeira e aumente a velocidade ao máximo
+                          até que a massa fique lisa e cremosa.<br>
+                          Diminua a velocidade e junte o restante do líquido aos poucos, até incorporar totalmente.<br>
+                          Transfira a massa para um saco de confeitar sem bico e preencha ¾ de cada
+                          forminha.<br>
+                          Leve ao forno para assar por cerca de 35 minutos.<br>
+                          Faça o teste do palito: insira um na massa, se sair limpo está pronto.`
+            },
+            {
+                titulo: "Cookie de Chocolate",
+                imagem: "cookies.png",
+                ingredientes: [
+                    "125 g de manteiga sem sal em temperatura ambiente",
+                    "1/2 xícara de açúcar mascavo",
+                    "1 e 3/4 de xícara de farinha de trigo",
+                    "300 g de chocolate meio amargo picado",
+                    "3/4 xícara de açúcar",
+                    "1 colher (chá) de fermento em pó",
+                    "1 ovo",
+                    "1 colher (chá) de essência de baunilha"
+                ],
+                preparo: `Modo de preparo do cookie de chocolate:<br>
+                          Preaqueça o forno a 180 ºC (temperatura média).<br>
+                          Misture a manteiga, açúcar mascavo, açúcar e essência de baunilha.<br>
+                          Adicione o ovo batido aos poucos e misture bem.<br>
+                          Acrescente a farinha aos poucos e misture bem.(pode ser na mão ou na batedeira)<br>
+                          Por último, adicione o fermento e misture só para incorporá-lo à
+                          massa.<br> 
+                          Depois da massa bem misturada, adicione o chocolate picado.<br>
+                          Forme bolinhas pequenas e asse em forno preaquecido, sobre papel
+                          manteiga, por aproximadamente 15 a 20 minutos (250° C).`
+            },
+            {
+                titulo: "Cheesecake",
+                imagem: "cheesecake.png",
+                ingredientes: [
+                    "Massa:",
+                    "250 g de biscoito de maisena de chocolate",
+                    "80 g de manteiga",
+                    "",
+                    "Recheio:",
+                    "600 g de cream cheese",
+                    "160 g de iogurte grego",
+                    "150 g de açúcar de confeiteiro",
+                    "1 colher de chá de extrato de baunilha",
+                    "",
+                    "Calda:",
+                    "1 xícara de 200 ml de polpa de amora",
+                    "1/2 xícara de 200 ml de açúcar"
+                ],
+                preparo: `Modo de preparo do cheesecake:<br>
+                          Massa:<br>
+                          Triture os biscoitos usando um liquidificador ou processador.<br>
+                          Coloque a manteiga e amasse com as mãos, para incorporar a manteiga ao biscoito.<br>
+                          Para finalizar, molde a massa no fundo da forma removível e reserve.<br><br>
+                          Recheio:<br>
+                          Misture todos os ingredientes com fuê.<br>
+                          Coloque na forma e leve para a geladeira até firmar.<br><br>
+                          Calda:<br>
+                          Misture e deixe ferver em uma panela por 5 minutos.<br>
+                          Deixe esfriar e coloque por cima da sobremesa, enfeite com frutas vermelhas se preferir.`
+            }
+        ];
+
+        // Função para obter a lista de ingredientes em formato HTML
+        function getListaIngredientes(ingredientes) {
+            var listaHTML = "<ul>";
+            listaHTML += ingredientes.map(item => "<li>" + item + "</li>").join("");
+            listaHTML += "</ul>";
+            return listaHTML;
+        }
+
+        // Função para gerar o card da receita em HTML
+        function getCard(receita) {
+            return `
+                <div class="col">
+                    <div class="card">
+                        <img src="${receita.imagem}" class="card-img-top" alt="${receita.titulo}">
+                        <div class="card-body">
+                            <h5 class="card-title">${receita.titulo}</h5>
+                            <div class="card-text">
+                                ${getListaIngredientes(receita.ingredientes)}
+                                <hr>
+                                <p>${receita.preparo}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Função para preencher o catálogo de receitas na página
+        function preencheCatalogo() {
+            var pnlCatalogo = document.getElementById("pnlCatalogo");
+            var htmlReceitas = receitas.map(receita => getCard(receita)).join("");
+            pnlCatalogo.innerHTML = htmlReceitas;
+        }
+
+        // Chamando a função para preencher o catálogo de receitas ao carregar a página
+        window.onload = preencheCatalogo;
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

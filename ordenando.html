@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenação de Números</title>
+ 
+    <style>
+         input[type="number"], select {
+            width: 80%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: block; 
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: block;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        #botaoMisturar {
+            background-color: #0056b3; 
+        }
+        #botaoMisturar:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Ordenando Valores</h1>
+    <input type="number" id="valor" placeholder="Digite um número">
+
+   
+    <button onclick="add()">Adicionar</button>
+
+   
+    <select id="metodoOrdenacao">
+        <option value="bubble" selected>Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="quick">Quick Sort</option>
+    </select>
+
+    <button onclick="ordenar()">Ordenar</button>
+
+    <button id="botaoMisturar" onclick="misturar()">Misturar</button>
+
+    <ul id="valores"></ul>
+
+    <script src="ordenando.js"></script>
+    
+</body>
+</html>
